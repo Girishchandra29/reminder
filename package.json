@@ -1,0 +1,14 @@
+{
+  "name": "reminder",
+  "version": "0.0.0",
+  "description": "A reminder app",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node src/index.ts"
+  },
+  "author": "Girish chandra",
+  "license": "MIT",
+  "dependencies": {
+    "reminder": "^0.1.1"
+  }
+}
