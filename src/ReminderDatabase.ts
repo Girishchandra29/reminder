@@ -62,7 +62,6 @@ export class ReminderDatabase {
           reminder.dueDate = new Date(dueDate.getTime() - dueDate.getTimezoneOffset() * 60000);
       }
   }
-
   removeReminder(id: string): void {
       this.reminders.delete(id);
   }
