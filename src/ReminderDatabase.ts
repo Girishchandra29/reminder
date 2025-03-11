@@ -57,7 +57,7 @@ export class ReminderDatabase {
   updateReminder(id: string, message: string, dueDate: Date): void {
       if (this.exists(id)) {
           const reminder = this.reminders.get(id)!;
-          // Convert dueDate to local time
+          
           reminder.message = message;
           reminder.dueDate = new Date(dueDate.getTime() - dueDate.getTimezoneOffset() * 60000);
       }
