@@ -2,7 +2,7 @@ type Reminder = {
     id: string;
     title: string;
     description?: string;
-    dueDate?: Date;
+    dueDate?: string; 
   };
   
   class ReminderDatabase {
@@ -16,7 +16,7 @@ type Reminder = {
       if (this.reminders.has(id)) {
         throw new Error("Reminder with this ID already exists.");
       }
-      this.reminders.set(id, { id, title, description, dueDate });
+      this.reminders.set(id, { id, title, description, dueDate: dueDate ? dueDate.toISOString() : undefined });
     }
   
     exists(id: string): boolean {
@@ -24,11 +24,19 @@ type Reminder = {
     }
   
     getAllReminders(): Reminder[] {
-      return Array.from(this.reminders.values());
+      return Array.from(this.reminders.values()).map(reminder => ({
+        ...reminder,
+        dueDate: reminder.dueDate ? new Date(reminder.dueDate).toLocaleString() : undefined
+      }));
     }
   
     getReminder(id: string): Reminder | null {
-      return this.reminders.get(id) || null;
+      const reminder = this.reminders.get(id);
+      if (!reminder) return null;
+      return {
+        ...reminder,
+        dueDate: reminder.dueDate ? new Date(reminder.dueDate).toLocaleString() : undefined
+      };
     }
   
     removeReminder(id: string): boolean {
@@ -44,10 +52,11 @@ type Reminder = {
         id,
         title: title ?? existingReminder.title,
         description: description ?? existingReminder.description,
-        dueDate: dueDate ?? existingReminder.dueDate,
+        dueDate: dueDate ? dueDate.toISOString() : existingReminder.dueDate,
       });
       return true;
     }
   }
   
   export default ReminderDatabase;
+  
