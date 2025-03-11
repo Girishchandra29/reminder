@@ -14,7 +14,7 @@
   console.log("\nFetching Reminder 1:", db.getReminder("1"));
   
   console.log("\nUpdating Reminder 1...");
-  db.updateReminder("1", "Buy more groceries", "Milk, eggs, bread, and fruits");
+  db.updateReminder("1", "Buy more groceries", "Milk, eggs, bread, butter and fruits");
   console.log("Updated Reminder 1:", db.getReminder("1"));
   
   console.log("\nDeleting Reminder 2...");
